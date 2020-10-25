@@ -9,3 +9,11 @@
 
 ![](./QProxyStyleTest/screenshot.png)
 
+## 多线程下载
+[MultiplethreadDownload](./MultiplethreadDownload/)         
+
+测试视频下载地址 https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4       
+下完的文件好像是有问题的。。。。请帮忙看一下        
+
+参考内容        
+* CoverEars(迅雷不及掩耳，Qt版多线程下载器) https://github.com/xj361685640/CoverEars-Qt 
