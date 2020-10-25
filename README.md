@@ -13,7 +13,8 @@
 [MultiplethreadDownload](./MultiplethreadDownload/)         
 
 测试视频下载地址 https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4       
-下完的文件好像是有问题的。。。。请帮忙看一下        
+
+多线程下如何更新下载进度的问题，还没解决。可以需要将线程任务单独拆分到Worker类里面。        
 
 参考内容        
 * CoverEars(迅雷不及掩耳，Qt版多线程下载器) https://github.com/xj361685640/CoverEars-Qt 
