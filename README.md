@@ -17,3 +17,5 @@
 
 参考内容        
 * CoverEars(迅雷不及掩耳，Qt版多线程下载器) https://github.com/xj361685640/CoverEars-Qt 
+
+![](./MultiplethreadDownload/screenshot.png)
