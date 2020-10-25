@@ -3,7 +3,6 @@
 
 #include <QWidget>
 #include <QNetworkAccessManager>
-#include <QMutex>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -32,7 +31,6 @@ private slots:
 private:
     QNetworkAccessManager *requestManager;
     const int maxThreadNum = 8;
-    QMutex lock;
 
     Ui::Widget *ui;
 };

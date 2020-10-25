@@ -13,6 +13,7 @@
 #include <QEventLoop>
 #include <QFuture>
 #include <QtConcurrent/QtConcurrent>
+#include <QMutex>
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
@@ -156,10 +157,13 @@ void Widget::multiDownload(const QString &url, qint64 fileSize, const QString &f
         request.setRawHeader("Range", QString("bytes=%1-%2").arg(pair.first).arg(pair.second).toLocal8Bit());
         QNetworkReply *reply = mgr.get(request);
         qint64 writePos = pair.first;
-        connect(reply, &QNetworkReply::readyRead, [&, reply, this](){
+        QMutex lock;
+        qDebug() << "开始下载数据：" << QString(" %1~%2 ").arg(pair.first).arg(pair.second);
+        connect(reply, &QNetworkReply::readyRead, [&lock, &writePos, &file, &bytesReceived, reply](){
             QByteArray data = reply->readAll();
             lock.lock();
-            file.peek(writePos);
+            qDebug() << "调整文件的数据指针："  << writePos;
+            file.seek(writePos);
             file.write(data);
             bytesReceived += data.size();
             lock.unlock();
@@ -204,10 +208,10 @@ void Widget::on_downloadBtn_clicked()
         }
     }
 
+    ui->downloadBtn->setEnabled(false);
     qint64 fileSize = getFileSize(url);
     QString sizeText = fileSize == 0 ? "未知大小" : Utils::sizeFormat(fileSize);
     ui->filesizeLabel->setText(sizeText);
-    ui->downloadBtn->setEnabled(false);
 
     int process_num = ui->threadCountSpinbox->text().toInt();
 
