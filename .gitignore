@@ -71,3 +71,6 @@ Thumbs.db
 *.dll
 *.exe
 
+# 编译目录
+build/
+build-*/

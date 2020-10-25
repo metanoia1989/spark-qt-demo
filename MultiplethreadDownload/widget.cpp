@@ -109,6 +109,7 @@ void Widget::singleDownload(const QString& url, const QString& filename)
         file.write(reply->readAll());
     });
     connect(reply, &QNetworkReply::finished, &event, &QEventLoop::quit);
+    connect(reply, &QNetworkReply::downloadProgress, this, &Widget::download_progress_change);
     connect(reply, &QNetworkReply::errorOccurred,  [this, reply](QNetworkReply::NetworkError error){
         if (error != QNetworkReply::NoError) showError(reply->errorString());
     });
